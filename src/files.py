@@ -3,7 +3,7 @@
 
 # Python standard library
 from __future__ import print_function
-import os, sys, re, textwrap
+import os, sys, re
 
 # Local imports
 from utils import (
