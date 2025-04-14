@@ -3,7 +3,7 @@
 
 # Python standard library
 from __future__ import print_function
-import os, sys, re
+import os, sys, re, textwrap
 
 # Local imports
 from utils import (
@@ -42,7 +42,7 @@ def check_file(file, ncols, delim='\t'):
     c = Colors()
     fh = open(file, 'r')
     try:
-        header = [clean(col.lower().strip()) for col in next(fh).strip().split(delim)]
+        header = [clean(col.strip()) for col in next(fh).strip().split(delim)]
     except StopIteration:
         err('{}{}Error: --groups "{}" file is empty!{}'.format(c.bg_red, c.white, file, c.end))
         fatal('{}{}Please add Sample and Group information to the file and try again.{}'.format(c.bg_red, c.white, c.end))
@@ -100,6 +100,7 @@ def index(file, delim='\t', required = ['Sample', 'Group']):
     # and it has the expected number of 
     # columns, i.e 2 
     header = check_file(file = file, ncols = len(required), delim = delim)
+    print('DEBUG>>>', header)
     # Parse the header to get the index of required fields
     # Get index of Sample, Group
     # columns for parsing the file
